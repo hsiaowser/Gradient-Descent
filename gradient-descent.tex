@@ -5,15 +5,23 @@
 \date{\today}
 \pagestyle{empty} 
 \section*{Gradient Descent}
-	Gradient descent, or back propagation, is a first order iterative optimization algorithm used to minimize the cost function when training artificial neural networks.
-\begin{align*}
-J(\theta_0, \theta_1) &= \frac{1}{2m} \sum_{i=1}^{m} [h_\theta (x_i) - y_i]^2 \\ 
-\theta_j &= \theta_j - \alpha \frac{\partial}{\partial \theta_j} J(\theta_0, \theta_1) \\
-\frac{\partial}{\partial \theta} J_\theta &= \frac{\partial}{\partial \theta} \frac{1}{2m} \sum_{i=1}^{m} [h_\theta (x_i) - y_i]^2 \\
-&= \frac{1}{m} \sum_{i=1}^{m} (h_\theta (x_i) - y_i) \frac{\partial}{\partial \theta} (\theta x_i - y) \\
-&= \frac{1}{m} \sum_{i=1}^{m} [(h_\theta (x_i) - y) x_i] \\
-\theta_j :&= \theta_j - \frac{\alpha}{m} \sum_{i=1}^{m}[(h_\theta(x_i) - y_i) x_i]
-\end{align*}
-
+	Gradient descent, or back propagation, is a first order iterative optimization algorithm used to minimize the cost function when training artificial neural networks.  As stated in $Recurrent Neural Networks (Mandic, Chambers)$:\\
 	
+	Gradient based learning aims to update iteratively the weight vector $w$ of an adaptive system so that a non-negtive error measure $J(\cdot)$ is reduced at each time step $k$,
+\begin{align}
+J(w + \Delta w) < J(w)
+\end{align}
+
+where $\Delta w$ is the change in $w$ from one iteration to the next.  Using a Taylor series expansion to approximate the error measure,
+\begin{align}
+J(w) + \Delta w \frac{\partial J(w)}{\partial w} + O(w^2) &< J(w)
+\end{align}
+With the assumtpion that the higher-order terms in the left-hand side of (2) can be neglected, (1) can be rewritten as
+\begin{align}
+\Delta w \frac{\partial J(w)}{\partial w} + O(w^2) &< 0
+\end{align}
+From (3), an algorithm would continuously reduce the error measure on the run, should change the weights in the opposite direction of the gradient $\partial J(w) / \partial w$, 
+\begin{align}
+\Delta w = -n\frac{\partial J(w)}{\partial w}
+\end{align}
 \end{document}
